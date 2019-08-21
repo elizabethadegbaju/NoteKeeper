@@ -79,6 +79,8 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void saveOriginalNoteValues() {
+        if(mIsNewNote)
+            return;
         mOriginalNoteCourseId = mNote.getCourse().getCourseId();
         mOriginalNoteTitle = mNote.getTitle();
         mOriginalNoteText = mNote.getText();
@@ -112,6 +114,7 @@ public class NoteActivity extends AppCompatActivity {
         DataManager dm = DataManager.getInstance();
         mNotePosition = dm.createNewNote();
         mNote = dm.getNotes().get(mNotePosition);
+        Log.d(TAG, "createNewNote: Note created at "+mNotePosition);
     }
 
     @Override
