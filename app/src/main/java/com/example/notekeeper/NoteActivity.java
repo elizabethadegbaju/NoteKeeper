@@ -2,8 +2,8 @@ package com.example.notekeeper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -62,8 +62,8 @@ public class NoteActivity extends AppCompatActivity {
             restoreOriginalNoteValues(savedInstanceState);
         }
 
-        mTextNoteTitle = findViewById(R.id.edit_note_title);
-        mTextNoteText = findViewById(R.id.edit_note_text);
+        mTextNoteTitle = findViewById(R.id.text_note_title);
+        mTextNoteText = findViewById(R.id.text_note_text);
 
         if (!mIsNewNote)
             displayNote(mSpinnerCourses, mTextNoteTitle, mTextNoteText);
@@ -128,7 +128,7 @@ public class NoteActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.action_next);
         int lastNoteIndex = DataManager.getInstance().getNotes().size()-1;
-
+        item.setEnabled(mNotePosition < lastNoteIndex);
         return super.onPrepareOptionsMenu(menu);
     }
 
